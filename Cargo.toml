@@ -5,3 +5,5 @@ authors = ["Avery Wagar <ajmw.subs@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+chan = "*"
+notify-rust = "3"
