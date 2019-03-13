@@ -2,7 +2,7 @@
 extern crate chan;
 extern crate notify_rust;
 use notify_rust::Notification;
-use notify_rust::NotificationHint as Hint;
+
 
 fn main() {
     // Run once
@@ -42,21 +42,21 @@ fn batterup(){
 
     let status = vec[0];
 
-    if charge >= 80 && status != "Discharging"{
+    if charge >= 80 && status != "Discharging"&& charge % 5 == 0 {
         // Notify to unplug
         Notification::new()
             .summary("Battery Charged")
-            .body("Battery at 80%! Unplug your laptop!")
+            .body(&format!("Battery at {}%! Unplug your laptop!", &charge))
             .icon("battery")
             .appname("Batter Up!")
             .timeout(0) // this however is
             .show().unwrap();
     }
-    else if charge <= 20 && status != "Charging"{
+    else if charge <= 20 && status != "Charging" && charge % 5 == 0 {
         // Notify to plug-in
         Notification::new()
             .summary("Battery Depleted")
-            .body("Battery at 20%! Plug in your laptop!")
+            .body(&format!("Battery at {}%! Plug in your laptop!", &charge))
             .icon("battery")
             .appname("Batter Up!")
             .timeout(0) // this however is
